@@ -36,6 +36,7 @@ in your .vimrc before the Plugin is loaded and set the desired mapping using
 ```
 nmap ,id <Plug>IndentCurrentFile
 ```
+&nbsp;
 
 If you later want to remove the whitespaces in the indented empty lines again, you can do this by default using `<Leader>rmin`, or set your own mapping in your .vimrc by defining
 ```
