@@ -1,6 +1,19 @@
 import re
 
 def get_next_nonempty_line(lines, idx):
+    """
+    Starting from the given index, finds the next non-empty line (i.e. a line 
+    containing more than just a line break) and returns its index in the given
+    list of lines.
+    
+    Parameters
+    ----------
+    lines : list of str
+        List containing the lines of the file.
+    idx : int
+        Index in list from which to start searching for next non-empty line.
+    """
+
     lines=lines[(idx+1):]
     idx_nonempty = [i for i, line in enumerate(lines) if not re.match("^\s+$", line)]
     if len(idx_nonempty):
@@ -9,6 +22,16 @@ def get_next_nonempty_line(lines, idx):
         return -1
 
 def indent_file(filename):
+    """
+    Given a filename, indents empty-lines to match indentation of next
+    non-empty line.
+        
+    Parameters
+    ----------
+    filename : str
+        Filename of the file for which to indent empty-lines.
+    """
+
     with open(filename,"r") as f:
         lines=f.readlines()
     
