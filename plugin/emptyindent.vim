@@ -7,6 +7,7 @@ if exists("g:loaded_emptyindent")
    finish
 endif
 let g:loaded_emptyindent = 1
+let b:plugin_path = expand('<sfile>:p:h')
 
 fun! s:IndentEmptyLines(filename)
     " check if vim is compiled with python3 
@@ -16,50 +17,18 @@ fun! s:IndentEmptyLines(filename)
     endif
     
 	w " save current file
+
 python3 << EOF
-# check if necessary packages are installed
-try:
-    import vim
-    import re
-except ModuleNotFoundError as err:
-    print(err)
-
-def get_next_nonempty_line(lines, idx):
-    lines=lines[(idx+1):]
-    idx_nonempty = [i for i, line in enumerate(lines) if not re.match("^\s+$", line)]
-    if len(idx_nonempty):
-        return idx + idx_nonempty[0] + 1
-    else: # if there's no more non-empty lines, return -1 as index to get last line
-        return -1
-
-def indent_file(filename):
-    with open(filename,"r") as f:
-        lines=f.readlines()
-    
-    # find empty lines and indent them if next non-empty 
-    # line is indented
-    for i, line in enumerate(lines):
-        # check if current line contains just a line break
-        if re.match("^\n$", line): 
-            # get index of next non-empy line
-            idx_next = get_next_nonempty_line(lines, i) 
-            # get number of whitespaces at line beginning of next nonempty line
-            ws_beginning = re.match("^\ +", lines[idx_next])
-            num_whitesp_next = len(ws_beginning.group()) if ws_beginning else 0
-             
-            # if the line is indented, also indent current line 
-            # TODO: make this more efficient by indenting all lines between
-            #       current line and next non-empty line, then skipping
-            #       in-between lines in next loop iteration
-            if num_whitesp_next>0:
-                lines[i]=" "*num_whitesp_next + "\n"
-    
-    with open(filename, "w") as f:
-        f.writelines(lines)
+import vim 
+import sys
+plugin_path = vim.eval("b:plugin_path")
+sys.path.append(plugin_path)
+from empty_line_indentation import indent_file
 
 filename = vim.eval("a:filename") 
 indent_file(filename)
 EOF
+
     " refresh current file
     execute "edit! " . a:filename 
 endfun
