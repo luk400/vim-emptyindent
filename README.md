@@ -1,12 +1,12 @@
 # vim-emptyindent
 
-Indents empty lines (i.e. lines with only a line break) in file to match indentation of next non-empty lines.
+Indents empty lines (i.e. lines with only a line break) in file to match indentation of corresponding next non-empty lines.
 
 This tool was created because of a regular annoyance I experienced when working with python scripts in an interactive manner where I execute and interact with parts of the code analagously to when using e.g. jupyter-notebook. 
 
 I regularly work with vim and an open terminal running python in a split window mode, and send lines from the opened file to the terminal. The plugin I use for this is [vim-sendtowindow](https://github.com/karoliskoncevicius/vim-sendtowindow). 
 Often however, there are empty lines without indentation in the files I work with, which causes problems if there's e.g. such an empty line in a function definition, since it signals the end of the function when I send such a line to the python buffer. 
-This tool looks for the next non-empty line after an empty line and matches its indentation.
+This tool solves this problem by looking for the next non-empty line after each empty line in the file and adjusting the indentation to match that of the respective following non-empty line. 
 
 
 ## Getting Started
