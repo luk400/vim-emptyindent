@@ -37,5 +37,5 @@ nnoremap <silent> <Plug>IndentCurrentFile :<C-U> call <SID>IndentEmptyLines(expa
 
 if !exists("g:indentempty_use_defaults") || g:indentempty_use_defaults
     nmap <Leader>in <Plug>IndentCurrentFile
-    nmap <Leader>rmin :%s/^\s\+$//g
+    nmap <Leader>rmin :%s/^\s\+$//g<cr>
 endif
