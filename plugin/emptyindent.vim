@@ -66,6 +66,6 @@ endfun
 
 nnoremap <silent> <Plug>IndentCurrentFile :<C-U> call <SID>IndentEmptyLines(expand('%:p'))<CR>
 
-if !hasmapto('<Plug>IndentCurrentFile')
-  map <unique> <Leader>ind <Plug>IndentCurrentFile
+if !exists("g:indentempty_use_defaults") || g:indentempty_use_defaults
+  map <Leader>ind <Plug>IndentCurrentFile
 endif
