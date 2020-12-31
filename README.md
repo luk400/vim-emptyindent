@@ -32,7 +32,7 @@ To define your own mapping, e.g. to use ',id' to indent the current file, simply
 ```
 let g:indentempty_use_defaults = 0
 ```
-before the Plugin is loaded and set the desired mapping using
+in your .vimrc before the Plugin is loaded and set the desired mapping using
 ```
 nmap ,id <Plug>IndentCurrentFile
 ```
