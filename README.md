@@ -14,7 +14,6 @@ This tool looks for the next non-empty line after an empty line and matches its 
 ### Dependencies
 
 * vim compiled with python version >= 3.6
-* installed python modules: re, vim
 
 ### Installation
 
