@@ -20,19 +20,17 @@ This tool looks for the next non-empty lines after an empty line and matches its
 
 With your plugin manager of choice. E.g.:
 
-Plug 'luk400/vim-emptyindent'
+```
+Plug 'luk400/vim-emptyindent' 
+```
 
 Or copy the contents of the plugin folder to your ./vim/plugin directory.
 
 ### Usage
 
-By default, the mapping `<Leader>ind` is used to indent the currently opened file:
+By default, the mapping `<Leader>ind` is used to indent the currently opened file.
 To define your own mapping, e.g. to use ',id' to indent the current file, simply use:
 ```
-nnoremap ,id <Plug>IndentCurrentFile
-```
-
-To indent a file other than the current one, use
-```
-:call IndentEmptyLines(/path/to/file)
+let g:indentempty_use_defaults = 0
+nmap ,id <Plug>IndentCurrentFile
 ```
