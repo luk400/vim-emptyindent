@@ -28,13 +28,13 @@ Or copy the contents of the plugin folder to your ./vim/plugin directory.
 ### Usage
 
 By default, the mapping `<Leader>in` is used to indent the currently opened file.
-To define your own mapping, e.g. to use ',id' to indent the current file, simply define
+To define your own mapping, simply define
 ```
 let g:indentempty_use_defaults = 0
 ```
-in your .vimrc before the Plugin is loaded and set the desired mapping using
+in your .vimrc before the Plugin is loaded and set the desired mapping by substituting `<Leader>in` in the following:
 ```
-nmap ,id <Plug>IndentCurrentFile
+nmap <Leader>in <Plug>IndentCurrentFile
 ```
 &nbsp;
 
