@@ -4,7 +4,7 @@
 " License:	This file is placed in the public domain.
 
 if exists("g:loaded_emptyindent")
-   finish
+    finish
 endif
 let g:loaded_emptyindent = 1
 let b:plugin_path = expand('<sfile>:p:h')
@@ -36,5 +36,6 @@ endfun
 nnoremap <silent> <Plug>IndentCurrentFile :<C-U> call <SID>IndentEmptyLines(expand('%:p'))<CR>
 
 if !exists("g:indentempty_use_defaults") || g:indentempty_use_defaults
-  map <Leader>ind <Plug>IndentCurrentFile
+    map <Leader>in <Plug>IndentCurrentFile
+    nnoremap <Leader>rmin :%s/^\s\+$//g
 endif
