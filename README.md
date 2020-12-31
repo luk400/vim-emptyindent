@@ -27,7 +27,7 @@ Or copy the contents of the plugin folder to your ./vim/plugin directory.
 
 ### Usage
 
-By default, the mapping `<Leader>ind` is used to indent the currently opened file.
+By default, the mapping `<Leader>in` is used to indent the currently opened file.
 To define your own mapping, e.g. to use ',id' to indent the current file, simply define
 ```
 let g:indentempty_use_defaults = 0
@@ -36,3 +36,9 @@ in your .vimrc before the Plugin is loaded and set the desired mapping using
 ```
 nmap ,id <Plug>IndentCurrentFile
 ```
+
+If you later want to remove the whitespaces in the indented empty lines again, you can do this by default using `<Leader>rmin`, or set your own mapping in your .vimrc by defining
+```
+nnoremap <Leader>rmin :%s/^\s\+$//g
+```
+where you substitute your own mapping for `<Leader>rmin`.
