@@ -1,6 +1,6 @@
 " Vim plugin for indenting empty lines according to corresponding next non-empty lines
-" Maintainer:	Lukas Pichlmann <pichlmannlukas@gmail.com>
-" License:	This file is placed in the public domain.
+" Maintainer:   Lukas Pichlmann <pichlmannlukas@gmail.com>
+" License:      This file is placed in the public domain.
 
 if exists("g:loaded_emptyindent")
     finish
@@ -14,7 +14,7 @@ fun! s:IndentEmptyLines(filename)
         echo "Error: Requires Vim compiled with +python3"
         finish
     endif
-	w
+    w
 
 python3 << EOF
 import vim 
@@ -35,6 +35,6 @@ nnoremap <silent> <Plug>IndentCurrentFile :<C-U> call <SID>IndentEmptyLines(expa
 
 if !exists("g:indentempty_use_defaults") || g:indentempty_use_defaults
     nmap <Leader>in <Plug>IndentCurrentFile
-	" remove indentations again with the following mappping:
+    " remove indentations again with the following mappping:
     nmap <Leader>rin :%s/^\s\+$//g<cr><c-o>
 endif
