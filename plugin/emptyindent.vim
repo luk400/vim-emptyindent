@@ -1,5 +1,4 @@
 " Vim plugin for indenting empty lines according to corresponding next non-empty lines
-" Last Change:  December 31, 2020
 " Maintainer:	Lukas Pichlmann <pichlmannlukas@gmail.com>
 " License:	This file is placed in the public domain.
 
@@ -15,8 +14,7 @@ fun! s:IndentEmptyLines(filename)
         echo "Error: Requires Vim compiled with +python3"
         finish
     endif
-    
-	w " save current file
+	w
 
 python3 << EOF
 import vim 
@@ -26,11 +24,10 @@ sys.path.append(plugin_path)
 from empty_line_indentation import indent_file
 
 filename = vim.eval("a:filename") 
-indent_file(filename)
+reindented_text = indent_file(filename)
+vim.command("let reindented_text = %s" % reindented_text)
 EOF
-
-    " refresh current file
-    execute "edit! " . a:filename 
+    call setline(1, reindented_text)
 endfun
 
 nnoremap <silent> <Plug>IndentCurrentFile :<C-U> call <SID>IndentEmptyLines(expand('%:p'))<CR>

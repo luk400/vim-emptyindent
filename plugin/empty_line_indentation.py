@@ -14,12 +14,13 @@ def get_next_nonempty_line(lines, idx):
         Index in list from which to start searching for next non-empty line.
     """
 
-    lines=lines[(idx+1):]
-    idx_nonempty = [i for i, line in enumerate(lines) if not re.match("^\s+$", line)]
-    if len(idx_nonempty):
-        return idx + idx_nonempty[0] + 1
-    else: # if there's no more non-empty lines, return -1 as index to get last line
-        return -1
+    # starting from given index, search for next nonempty-line
+    lines_partial = lines[(idx+1):]
+    for i, line in enumerate(lines_partial):
+        if re.match(".*\S+.*", line): # if line contains non-whitespace characters
+            break
+
+    return idx + i + 1
 
 def indent_file(filename):
     """
@@ -33,25 +34,29 @@ def indent_file(filename):
     """
 
     with open(filename,"r") as f:
-        lines=f.readlines()
+        lines=f.read().splitlines()
     
     # find empty lines and indent them if next non-empty 
     # line is indented
-    for i, line in enumerate(lines):
-        # check if current line contains just a line break
-        if re.match("^\n$", line): 
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        # check if current line contains just a line break, and make sure
+        # we're not in the last line of the file
+        if re.match("^$", line) and i < (len(lines) - 1): 
             # get index of next non-empy line
             idx_next = get_next_nonempty_line(lines, i) 
-            # get number of whitespaces at line beginning of next nonempty line
-            ws_beginning = re.match("^\ +", lines[idx_next])
-            num_whitesp_next = len(ws_beginning.group()) if ws_beginning else 0
+            # get number of whitespaces/tabs at beginning of next nonempty line
+            next_indent = re.match("^\s+", lines[idx_next])
              
-            # if the line is indented, also indent current line 
-            # TODO: make this more efficient by indenting all lines between
-            #       current line and next non-empty line, then skipping
-            #       in-between lines in next loop iteration
-            if num_whitesp_next>0:
-                lines[i]=" "*num_whitesp_next + "\n"
-    
-    with open(filename, "w") as f:
-        f.writelines(lines)
+            # if the next non-empty line is indented, also indent current line
+            # and all empty lines inbetween
+            if next_indent:
+                for j in range(i, idx_next):
+                    lines[j] = next_indent.group()
+                i = idx_next+1
+            else:
+                i += 1
+        else:
+            i += 1
+    return lines
