@@ -6,7 +6,6 @@ if exists("g:loaded_emptyindent")
     finish
 endif
 let g:loaded_emptyindent = 1
-let b:plugin_path = expand('<sfile>:p:h')
 
 fun! s:IndentEmptyLines(filename)
     " check if vim is compiled with python3 
@@ -19,12 +18,16 @@ fun! s:IndentEmptyLines(filename)
 python3 << EOF
 import vim 
 import sys
-plugin_path = vim.eval("b:plugin_path")
-sys.path.append(plugin_path)
+from os.path import expanduser
+# add plugin path so python module can be imported
+sys.path.append(expanduser("~") + "/.vim/plugged/vim-emptyindent/plugin")
 from empty_line_indentation import indent_file
 
+# get filename from vimscript environment
 filename = vim.eval("a:filename") 
+# reindent file
 reindented_text = indent_file(filename)
+# pass reindented files as a list of lines to vimscript variable
 vim.command("let reindented_text = %s" % reindented_text)
 EOF
 
