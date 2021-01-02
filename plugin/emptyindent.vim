@@ -27,6 +27,7 @@ filename = vim.eval("a:filename")
 reindented_text = indent_file(filename)
 vim.command("let reindented_text = %s" % reindented_text)
 EOF
+
     call setline(1, reindented_text)
 endfun
 
@@ -34,5 +35,6 @@ nnoremap <silent> <Plug>IndentCurrentFile :<C-U> call <SID>IndentEmptyLines(expa
 
 if !exists("g:indentempty_use_defaults") || g:indentempty_use_defaults
     nmap <Leader>in <Plug>IndentCurrentFile
-    nmap <Leader>rmin :%s/^\s\+$//g<cr>
+	" remove indentations again with the following mappping:
+    nmap <Leader>rin :%s/^\s\+$//g<cr><c-o>
 endif
