@@ -13,7 +13,7 @@ This tool solves this problem by looking for the next non-empty line after each 
 
 ### Dependencies
 
-* vim compiled with python version >= 3.6
+* vim compiled with python3
 
 ### Installation
 
@@ -38,8 +38,8 @@ nmap <Leader>in <Plug>IndentCurrentFile
 ```
 &nbsp;
 
-If you later want to remove the whitespaces in the indented empty lines again, you can do this by default using `<Leader>rmin`, or set your own mapping in your .vimrc by defining
+If you later want to remove the whitespaces in the indented empty lines again, you can do this by default using `<Leader>rin`, or set your own mapping in your .vimrc by defining
 ```
-nnoremap <Leader>rmin :%s/^\s\+$//g<cr><c-o>
+nnoremap <Leader>rin :%s/^\s\+$//g<cr><c-o>
 ```
-where you substitute your own mapping for `<Leader>rmin`.
+where you substitute your own mapping for `<Leader>rin`.
