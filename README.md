@@ -8,6 +8,11 @@ I regularly work with vim and an open terminal running python in a split window 
 Often however, there are empty lines without indentation in the files I work with, which causes problems if there's e.g. such an empty line in a function definition, since it signals the end of the function when I send such a line to the python buffer. 
 This tool solves this problem by looking for the next non-empty line after each empty line in the file and adjusting the indentation to match that of the respective following non-empty line. 
 
+ ![Problem Example 1](https://github.com/luk400/vim-emptyindent/blob/media/problem1.gif?raw=true)
+ ![Problem Example 2](https://github.com/luk400/vim-emptyindent/blob/media/problem2.gif?raw=true)
+ ![Solution Example 1](../media/solution1.gif?raw=true)
+ ![Solution Example 2](../media/solution2.gif?raw=true)
+
 
 ## Getting Started
 
