@@ -1,4 +1,5 @@
 import re
+import json
 
 def get_next_nonempty_line(lines, idx):
     """
@@ -17,7 +18,7 @@ def get_next_nonempty_line(lines, idx):
     lines_partial = lines[(idx + 1):]
     for i, line in enumerate(lines_partial):
         # if line contains non-whitespace characters, break
-        if re.match(".*\S+.*", line): 
+        if re.match(r".*\S+.*", line): 
             break
 
     # return index of next non-empty line
@@ -42,12 +43,12 @@ def indent_file(filename):
         line = lines[i]
         # check if current line is empty, and make sure we're not in the last 
         # line of the file
-        if re.match("^$", line) and i < (len(lines) - 1): 
+        if re.match(r"^$", line) and i < (len(lines) - 1): 
             # get index of next non-empty line
             idx_next = get_next_nonempty_line(lines, i) 
             # get indentation, i.e. number of spaces/tabs at beginning of next 
             # non-empty line
-            next_indent = re.match("^\s+", lines[idx_next])
+            next_indent = re.match(r"^\s+", lines[idx_next])
              
             # if the next non-empty line is indented, also indent current line
             # and all empty lines in-between
@@ -60,4 +61,7 @@ def indent_file(filename):
         else:
             i += 1
 
-    return lines
+    # json.dumps() makes it so that strings are double quotes -> necessary for
+    # the list to be read correctly in vimscript in case there are double AND
+    # single quotes in the same line
+    return json.dumps(lines) 

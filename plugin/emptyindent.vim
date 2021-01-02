@@ -27,7 +27,7 @@ from empty_line_indentation import indent_file
 filename = vim.eval("a:filename") 
 # reindent file
 reindented_text = indent_file(filename)
-# pass reindented files as a list of lines to vimscript variable
+# pass reindented file as a list of lines to vimscript variable
 vim.command("let reindented_text = %s" % reindented_text)
 EOF
 
