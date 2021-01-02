@@ -17,7 +17,7 @@ This tool solves this problem by looking for the next non-empty line after each 
 
 ### Installation
 
-With your plugin manager of choice. E.g.:
+With your plugin manager of choice, e.g.:
 
 ```
 Plug 'luk400/vim-emptyindent' 
@@ -28,7 +28,7 @@ Or copy the contents of the plugin folder to your ./vim/plugin directory.
 ### Usage
 
 By default, the mapping `<Leader>in` is used to indent the currently opened file.
-To define your own mapping, simply define
+To define your own mapping, simply set
 ```
 let g:indentempty_use_defaults = 0
 ```
