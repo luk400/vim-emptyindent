@@ -40,6 +40,6 @@ nmap <Leader>in <Plug>IndentCurrentFile
 
 If you later want to remove the whitespaces in the indented empty lines again, you can do this by default using `<Leader>rmin`, or set your own mapping in your .vimrc by defining
 ```
-nnoremap <Leader>rmin :%s/^\s\+$//g<cr>
+nnoremap <Leader>rmin :%s/^\s\+$//g<cr><c-o>
 ```
 where you substitute your own mapping for `<Leader>rmin`.
