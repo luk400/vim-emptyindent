@@ -2,7 +2,7 @@ import re
 
 def get_next_nonempty_line(lines, idx):
     """
-    Starting from the given index, finds the next non-empty line (i.e. a line 
+    Starting after the given index, finds the next non-empty line (i.e. a line 
     containing more than just a line break) and returns its index in the given
     list of lines.
     
@@ -14,7 +14,7 @@ def get_next_nonempty_line(lines, idx):
         Index in list after which to start searching for next non-empty line.
     """
 
-    # starting from line after the given index, search for next nonempty-line
+    # starting from line after the given index, search for next non-empty-line
     lines_partial = lines[(idx + 1):]
     for i, line in enumerate(lines_partial):
         # if line contains non-whitespace characters, break
@@ -38,7 +38,6 @@ def indent_file(filename):
     with open(filename,"r") as f:
         lines=f.read().splitlines()
     
-    # find empty lines and indent them if next non-empty line is indented
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -48,7 +47,7 @@ def indent_file(filename):
             # get index of next non-empty line
             idx_next = get_next_nonempty_line(lines, i) 
             # get indentation, i.e. number of spaces/tabs at beginning of next 
-            # nonempty line
+            # non-empty line
             next_indent = re.match("^\s+", lines[idx_next])
              
             # if the next non-empty line is indented, also indent current line
