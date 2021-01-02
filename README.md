@@ -11,7 +11,7 @@ This tool solves this problem by looking for the next non-empty line after each 
 
 ## Getting Started
 
-### Dependencies
+### Requirements
 
 * vim compiled with python3
 
