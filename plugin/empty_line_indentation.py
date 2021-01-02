@@ -61,7 +61,10 @@ def indent_file(filename):
         else:
             i += 1
 
-    # json.dumps() makes it so that strings are double quotes -> necessary for
-    # the list to be read correctly in vimscript in case there are double AND
-    # single quotes in the same line
+    # json.dumps() makes it so that strings are in double quotes -> necessary 
+    # for lines of the list to be read into vimscript where there are double 
+    # AND single quotes in the same line. If there were double and single
+    # quotes in a single line and the string was enclosed by single quotes,
+    # then vimscript would end the string at the first inner single quote,
+    # even if it was escaped. This would cause an error. 
     return json.dumps(lines) 
