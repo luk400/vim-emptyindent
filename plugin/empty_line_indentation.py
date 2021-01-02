@@ -2,9 +2,8 @@ import re
 
 def get_next_nonempty_line(lines, idx):
     """
-    Starting after the given index, finds the next non-empty line (i.e. a line 
-    containing more than just a line break) and returns its index in the given
-    list of lines.
+    Starting after the given index, finds the next non-empty line and returns
+    its index in the given list of lines.
     
     Parameters
     ----------
