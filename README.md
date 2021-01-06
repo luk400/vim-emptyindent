@@ -28,8 +28,6 @@ With your plugin manager of choice, e.g.:
 Plug 'luk400/vim-emptyindent' 
 ```
 
-Or copy the contents of the plugin folder to your ./vim/plugin directory.
-
 ### Usage
 
 By default, the mapping `<Leader>in` is used to indent the currently opened file.
